@@ -12,8 +12,9 @@ namespace MyGame
 {
     class Ship : GameObject
     {
-        private const double V=0.3;
-        float Speed = (float)V;
+        private const float Speed = 0.3f;
+        private const int FireDelay = 200;
+        private int _fireTimer;
         private readonly Sprite _sprite = new Sprite();
         // Creates our ship.
         public Ship()
@@ -31,12 +32,32 @@ namespace MyGame
             Vector2f pos = _sprite.Position;
             float x = pos.X;
             float y = pos.Y;
+
             int msElapsed = elapsed.AsMilliseconds();
+
             if (Keyboard.IsKeyPressed(Keyboard.Key.W)) { y -= Speed * msElapsed; }
             if (Keyboard.IsKeyPressed(Keyboard.Key.S)) { y += Speed * msElapsed; }
             if (Keyboard.IsKeyPressed(Keyboard.Key.A)) { x -= Speed * msElapsed; }
             if (Keyboard.IsKeyPressed(Keyboard.Key.D)) { x += Speed * msElapsed; }
             _sprite.Position = new Vector2f(x, y);
+
+            if(_fireTimer >0) { _fireTimer -= msElapsed; }
+
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Space) && _fireTimer <= 0)
+            {
+                _fireTimer = FireDelay;
+                FloatRect bounds = _sprite.GetGlobalBounds();
+                float laserX = x+bounds.Width;
+                float laserY = y+bounds.Height / 2.0f;
+                float laser2Y = y+bounds.Height/3f;
+                float laser3y = y+bounds.Height/1.5f;
+                Laser laser = new Laser(new Vector2f(laserX, laserY));
+                Laser laser2 = new Laser(new Vector2f(laserX,laser2Y));
+                Laser laser3 = new Laser(new Vector2f(laserX, laser3y));
+                Game.CurrentScene.AddGameObject(laser);
+                Game.CurrentScene.AddGameObject(laser2);
+                Game.CurrentScene.AddGameObject(laser3);
+            }
         }
     }
 }
