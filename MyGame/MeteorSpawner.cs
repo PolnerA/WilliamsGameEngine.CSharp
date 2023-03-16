@@ -1,39 +1,33 @@
 ﻿using GameEngine;
+using SFML.Graphics;
 using SFML.System;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace MyGame
 {
     class MeteorSpawner : GameObject
     {
-        //num of milliseconds pre meteor spawn
+        // the number of milliseconds between meteor spans.
         private const int SpawnDelay = 1000;
-
         private int _timer;
-
-        public void Update(TimeOnly elapsed)
-        { 
-            //determine time passed and adjusts the timer
+        public override void Update(Time elapsed)
+        {
+            // Determine how much time has passed and adjust our timer.
             int msElapsed = elapsed.AsMilliseconds();
             _timer -= msElapsed;
-            // if the timer elapses it spawns a meteor
-            if (_timer <= 0) 
+            // If our timer has elapsed, reset it and spawn a meteor.
+            if (_timer <= 0)
             {
                 _timer = SpawnDelay;
                 Vector2u size = Game.RenderWindow.Size;
-                // spawn the meteor on the right side
-                // meteor isnt more than 100 pixels
+                // Spawn the meteor off the right side of the screen.
+                // We're assuming the meteor isn't more than 100 pixels wide.
                 float meteorX = size.X + 100;
-                // spawn the meteor somewhere along the window height at random
+                // Spawn the meteor somewhere aloing the height of the window, randomly.
                 float meteorY = Game.Random.Next() % size.Y;
-                //create meteor and add it to scene
+                // Create a meteor and add it to the scene
                 Meteor meteor = new Meteor(new Vector2f(meteorX, meteorY));
                 Game.CurrentScene.AddGameObject(meteor);
             }
         }
     }
 }
+
