@@ -54,11 +54,9 @@ namespace MyGame
                 Laser laser = new Laser(new Vector2f(laserX, laserY));
                 Laser laser2 = new Laser(new Vector2f(laserX,laser2Y));
                 Laser laser3 = new Laser(new Vector2f(laserX, laser3y));
-                Meteor meteor = new Meteor(new Vector2f(x+bounds.Width, y+bounds.Height/2.0f));
                 Game.CurrentScene.AddGameObject(laser);
                 Game.CurrentScene.AddGameObject(laser2);
                 Game.CurrentScene.AddGameObject(laser3);
-                Game.CurrentScene.AddGameObject(meteor);
             }
         }
     }
