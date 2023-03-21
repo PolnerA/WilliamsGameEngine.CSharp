@@ -1,4 +1,5 @@
 ﻿using GameEngine;
+using SFML.Audio;
 using SFML.Graphics;
 using SFML.System;
 using System;
@@ -11,7 +12,7 @@ namespace MyGame
 {
     class Laser : GameObject
     {
-        private const float Speed = 1.2f;
+        private const float Speed = 3.0f;
         private readonly Sprite _sprite = new Sprite();
         public Laser(Vector2f pos)
         {

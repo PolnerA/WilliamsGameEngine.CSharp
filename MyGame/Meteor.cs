@@ -29,8 +29,10 @@ namespace MyGame
         {
             int msElapsed = elapsed.AsMilliseconds();
             Vector2f pos = _sprite.Position;
-            if (pos.X < _sprite.GetGlobalBounds().Width *-1)
+            if (pos.X < _sprite.GetGlobalBounds().Width * -1)
             {
+                GameScene scene = (GameScene)Game.CurrentScene;
+                scene.DecreaseLives();
                 MakeDead();
             }
             else
@@ -38,6 +40,7 @@ namespace MyGame
                 _sprite.Position = new Vector2f(pos.X - Speed * msElapsed, pos.Y);
             }
         }
+
         public override FloatRect GetCollisionRect()
         {
             return _sprite.GetGlobalBounds();
@@ -47,9 +50,17 @@ namespace MyGame
             if (otherGameObject.HasTag("laser"))
             {
                 otherGameObject.MakeDead();
+                GameScene scene = (GameScene)Game.CurrentScene;
+                scene.IncreaseScore();
             }
+            Vector2f pos = _sprite.Position;
+            pos.X = pos.X + (float)_sprite.GetGlobalBounds().Width / 2.0f;
+            pos.Y = pos.Y + (float)_sprite.GetGlobalBounds().Height / 2.0f;
+            Explosion explosion = new Explosion(pos);
+            Game.CurrentScene.AddGameObject(explosion);
             MakeDead();
         }
+
 
     }
 }

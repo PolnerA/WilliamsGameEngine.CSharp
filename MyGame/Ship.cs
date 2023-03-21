@@ -12,8 +12,8 @@ namespace MyGame
 {
     class Ship : GameObject
     {
-        private const float Speed = 0.3f;
-        private const int FireDelay = 200;
+        private const float Speed = 3f;
+        private const int FireDelay = 20;
         private int _fireTimer;
         private readonly Sprite _sprite = new Sprite();
         // Creates our ship.
@@ -29,6 +29,7 @@ namespace MyGame
         }
         public override void Update(Time elapsed)
         {
+            
             Vector2f pos = _sprite.Position;
             float x = pos.X;
             float y = pos.Y;
@@ -39,6 +40,22 @@ namespace MyGame
             if (Keyboard.IsKeyPressed(Keyboard.Key.S)) { y += Speed * msElapsed; }
             if (Keyboard.IsKeyPressed(Keyboard.Key.A)) { x -= Speed * msElapsed; }
             if (Keyboard.IsKeyPressed(Keyboard.Key.D)) { x += Speed * msElapsed; }
+            if (y<0)
+            {
+                y+=600;
+            }
+            if (x<0)
+            {
+                x+=800;
+            }
+            if (800<x)
+            {
+                x=0;
+            }
+            if (600<y)
+            {
+                y=0;
+            }
             _sprite.Position = new Vector2f(x, y);
 
             if(_fireTimer >0) { _fireTimer -= msElapsed; }
