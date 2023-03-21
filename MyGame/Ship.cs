@@ -12,8 +12,8 @@ namespace MyGame
 {
     class Ship : GameObject
     {
-        private const float Speed = 3f;
-        private const int FireDelay = 20;
+        private const float Speed = 0.5f;
+        private const int FireDelay = 300;
         private int _fireTimer;
         private readonly Sprite _sprite = new Sprite();
         // Creates our ship.

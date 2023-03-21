@@ -12,7 +12,7 @@ namespace MyGame
 {
     class Meteor : GameObject
     {
-        private const float Speed = 0.25f;
+        private const float Speed = 0.3f;
         private readonly Sprite _sprite = new Sprite();
         public Meteor(Vector2f pos)
         {
