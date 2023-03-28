@@ -12,7 +12,7 @@ namespace MyGame
 {
     class Background : GameObject
     {
-        private const float Speed = 0.7f;
+        private const float Speed = 0.3f;
         private readonly Sprite _sprite = new Sprite();
         private readonly Sprite _sprite2 = new Sprite();
         public Background()

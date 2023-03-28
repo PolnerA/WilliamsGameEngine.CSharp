@@ -12,7 +12,7 @@ namespace MyGame
 {
     class Ship : GameObject
     {
-        private const float Speed = 0.5f;
+        private const float Speed = 0.3f;
         private const int FireDelay = 300;
         private int _fireTimer;
         private readonly Sprite _sprite = new Sprite();
@@ -64,10 +64,10 @@ namespace MyGame
             {
                 _fireTimer = FireDelay;
                 FloatRect bounds = _sprite.GetGlobalBounds();
-                float laserX = x+bounds.Width;
+                float laserX = x+bounds.Width/2.0f;
                 float laserY = y+bounds.Height / 2.0f;
-                float laser2Y = y+bounds.Height/3f;
-                float laser3y = y+bounds.Height/1.5f;
+                float laser2Y = y+bounds.Height;
+                float laser3y = y;
                 Laser laser = new Laser(new Vector2f(laserX, laserY));
                 Laser laser2 = new Laser(new Vector2f(laserX,laser2Y));
                 Laser laser3 = new Laser(new Vector2f(laserX, laser3y));

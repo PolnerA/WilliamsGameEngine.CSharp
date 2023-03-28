@@ -12,7 +12,7 @@ namespace MyGame
 {
     class Laser : GameObject
     {
-        private const float Speed = 3.0f;
+        private const float Speed = 0.7f;
         private readonly Sprite _sprite = new Sprite();
         public Laser(Vector2f pos)
         {
