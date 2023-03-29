@@ -15,11 +15,14 @@ namespace MyGame
         private const float Speed = 0.3f;
         private readonly Sprite _sprite = new Sprite();
         private readonly Sprite _sprite2 = new Sprite();
+        private readonly Sprite _sprite3 = new Sprite();
         public Background()
         {
-            _sprite.Texture = Game.GetTexture("Resources/background.png");
-            _sprite2.Texture = Game.GetTexture("Resources/background.png");
-            _sprite2.Position = new Vector2f(700, 0);
+            _sprite.Texture = Game.GetTexture("../../../Resources/background.png");
+            _sprite2.Texture = Game.GetTexture("../../../Resources/background.png");
+            _sprite3.Texture = Game.GetTexture("../../../Resources/Grass.png");
+            _sprite3.Position = new Vector2f(0, 0);
+            _sprite2.Position = new Vector2f(1080, 0);
             _sprite.Position = new Vector2f(0, 0);
         }
         public override void Draw()
@@ -38,13 +41,13 @@ namespace MyGame
             int msElapsed = elapsed.AsMilliseconds();
             x-= Speed*msElapsed;
             x2-= Speed *msElapsed;
-            if (x < -700)
+            if (x < -1080)
             {
-                x+=1400;
+                x+=2160;
             }
-            else if (x2 <-700)
+            else if (x2 <-1080)
             {
-                x2+=1400;
+                x2+=2160;
             }
             _sprite2.Position = new Vector2f(x2,y2);
             _sprite.Position = new Vector2f(x, y);
