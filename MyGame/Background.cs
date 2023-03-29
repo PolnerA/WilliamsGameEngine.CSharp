@@ -21,7 +21,7 @@ namespace MyGame
             _sprite.Texture = Game.GetTexture("../../../Resources/background.png");
             _sprite2.Texture = Game.GetTexture("../../../Resources/background.png");
             _sprite3.Texture = Game.GetTexture("../../../Resources/Grass.png");
-            _sprite3.Position = new Vector2f(0, 0);
+            _sprite3.Position = new Vector2f(0, 520);
             _sprite2.Position = new Vector2f(1080, 0);
             _sprite.Position = new Vector2f(0, 0);
         }
@@ -29,6 +29,7 @@ namespace MyGame
         {
             Game.RenderWindow.Draw(_sprite);
             Game.RenderWindow.Draw(_sprite2);
+            Game.RenderWindow.Draw(_sprite3);
         }
         public override void Update(Time elapsed)
         {
