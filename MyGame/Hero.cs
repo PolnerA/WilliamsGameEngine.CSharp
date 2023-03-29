@@ -5,6 +5,7 @@ using SFML.System;
 using SFML.Window;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,8 +16,9 @@ namespace MyGame
     {
         private const float speed = 0.3f;
         private const int attackdelay = 300;
-        private const int jumpdelay = 300;
+        private const int jumpdelay = 1000;
         private int _attacktimer;
+        private int jumpduration = 0;
         private int _jumptimer;
         private readonly Sprite _sprite = new Sprite();
         public Hero()
@@ -31,21 +33,28 @@ namespace MyGame
         public override void Update(Time elapsed)
         {
 
+            
             Vector2f pos = _sprite.Position;
             float x = pos.X;
             float y = pos.Y;
-
+            if (0<jumpduration)
+            {
+                y-=1f;
+                jumpduration-=1;
+            }
             int msElapsed = elapsed.AsMilliseconds();
             if (Keyboard.IsKeyPressed(Keyboard.Key.A)) { x -= speed * msElapsed; }
             if (Keyboard.IsKeyPressed(Keyboard.Key.D)) { x += speed * msElapsed; }
-            if (y<320)
+            if (y<320&&jumpduration==0)
             {
                 y+=0.98f;
             }
             if (-_jumptimer >0) { _jumptimer -= msElapsed; }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Space) && _jumptimer <=0 && y ==320)
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Space) && _jumptimer <=0)
             {
-                y-=0.98f;
+                y-=1f;
+                jumpduration=50;
+                _jumptimer = 1000;
             }
             _sprite.Position = new Vector2f(x, y);
 
