@@ -15,7 +15,9 @@ namespace MyGame
     {
         private const float speed = 0.3f;
         private const int attackdelay = 300;
+        private const int jumpdelay = 300;
         private int _attacktimer;
+        private int _jumptimer;
         private readonly Sprite _sprite = new Sprite();
         public Hero()
         {
@@ -34,15 +36,19 @@ namespace MyGame
             float y = pos.Y;
 
             int msElapsed = elapsed.AsMilliseconds();
-
-            if (Keyboard.IsKeyPressed(Keyboard.Key.W)) { y -= speed * msElapsed; }
             if (Keyboard.IsKeyPressed(Keyboard.Key.A)) { x -= speed * msElapsed; }
             if (Keyboard.IsKeyPressed(Keyboard.Key.D)) { x += speed * msElapsed; }
-            if (y!=320)
+            if (y<320)
+            {
+                y+=0.98f;
+            }
+            if (-_jumptimer >0) { _jumptimer -= msElapsed; }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Space) && _jumptimer <=0 && y ==320)
             {
                 y-=0.98f;
             }
             _sprite.Position = new Vector2f(x, y);
+
             /*
             if (-_attacktimer >0) { _attacktimer -= msElapsed; }
 
