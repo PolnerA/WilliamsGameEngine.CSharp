@@ -39,21 +39,30 @@ namespace MyGame
             float y = pos.Y;
             if (0<jumpduration)
             {
-                y-=1f;
+                y-=2f;
                 jumpduration-=1;
             }
             int msElapsed = elapsed.AsMilliseconds();
-            if (Keyboard.IsKeyPressed(Keyboard.Key.A)) { x -= speed * msElapsed; }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.D)) { x += speed * msElapsed; }
-            if (y<320&&jumpduration==0)
+            if (Keyboard.IsKeyPressed(Keyboard.Key.W))
             {
-                y+=0.98f;
+                MyGame.WindowWidth += 1;
+                MyGame.WindowHeight +=1;
             }
-            if (-_jumptimer >0) { _jumptimer -= msElapsed; }
+            if (y<320&&jumpduration==0)//if in the air and not jumping up 
+            {
+                float yincrease = 0.98f;
+                y+= yincrease;//gravity -9.8m/s/s ->  100 pixels = 1 meter ms = 0.001 seconds | speed is pixels per millisecond gravity| speed down 980 pixels per second per second -> -0.98 pixels per millisecond per second
+                if (elapsed.AsSeconds()%1 ==0)
+                {
+                    yincrease+=0.98f;
+                }
+            }
+            if (_jumptimer >0) { _jumptimer -= msElapsed; }
             if (Keyboard.IsKeyPressed(Keyboard.Key.Space) && _jumptimer <=0)
             {
-                y-=1f;
+                y-=2f;
                 jumpduration=50;
+                jumpduration -=1;
                 _jumptimer = 1000;
             }
             _sprite.Position = new Vector2f(x, y);

@@ -40,15 +40,31 @@ namespace MyGame
             float x = pos.X;
             float y = pos.Y;
             int msElapsed = elapsed.AsMilliseconds();
-            x-= Speed*msElapsed;
-            x2-= Speed *msElapsed;
+            if (Keyboard.IsKeyPressed(Keyboard.Key.D)) 
+            { 
+                x -= Speed * msElapsed;
+                x2 -= Speed * msElapsed;
+            }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.A)) 
+            { 
+                x += Speed * msElapsed;
+                x2 += Speed * msElapsed;
+            }
             if (x < -1080)
             {
                 x+=2160;
             }
-            else if (x2 <-1080)
+            if (x2 <-1080)
             {
                 x2+=2160;
+            }
+            if (1080<x)
+            {
+                x -= 2160;
+            }
+            if (1080<x2)
+            {
+                x2-= 2160;
             }
             _sprite2.Position = new Vector2f(x2,y2);
             _sprite.Position = new Vector2f(x, y);
