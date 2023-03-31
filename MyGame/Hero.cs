@@ -1,5 +1,4 @@
 ﻿using GameEngine;
-using GameEngine;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
