@@ -9,9 +9,7 @@ namespace MyGame
         public GameScene()
         {
             Background background = new Background();
-            AddGameObject(background);
             Hero hero = new Hero();
-            AddGameObject(hero);
         }
         // Get the current score
         public int GetScore()
