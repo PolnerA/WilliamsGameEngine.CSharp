@@ -8,12 +8,6 @@ namespace MyGame
         private int _score;
         public GameScene()
         {
-            Background background = new Background();
-            AddGameObject(background);
-            Hero hero = new Hero();
-            AddGameObject(hero);
-            Meteor meteor = new Meteor(new Vector2f(1000, 300));
-            AddGameObject(meteor);
         }
         // Get the current score
         public int GetScore()

@@ -40,6 +40,10 @@ namespace MyGame
             float x = pos.X;
             float y = pos.Y;
             int msElapsed = elapsed.AsMilliseconds();
+            if (Keyboard.IsKeyPressed(Keyboard.Key.W))
+            {
+                _sprite3.Scale = new Vector2f(5,5);
+            }
             if (Keyboard.IsKeyPressed(Keyboard.Key.D)) 
             { 
                 x -= Speed * msElapsed;

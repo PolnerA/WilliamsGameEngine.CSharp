@@ -24,7 +24,7 @@ namespace MyGame
         public Hero()
         {
             _sprite.Texture = Game.GetTexture("../../../Resources/Hero.png");
-            _sprite.Position = new Vector2f(540,320);
+            _sprite.Position = new Vector2f(10,320);
         }
         public override void Draw()
         {
@@ -43,11 +43,7 @@ namespace MyGame
                 jumpduration-=1;
             }
             int msElapsed = elapsed.AsMilliseconds();
-            if (Keyboard.IsKeyPressed(Keyboard.Key.W))
-            {
-                MyGame.WindowWidth += 1;
-                MyGame.WindowHeight +=1;
-            }
+            
             if (y<320&&jumpduration==0)//if in the air and not jumping up 
             {
                 float yincrease = 0.98f;
