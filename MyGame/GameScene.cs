@@ -9,7 +9,19 @@ namespace MyGame
         public GameScene()
         {
             Background background = new Background();
-            Hero hero = new Hero();
+            AddGameObject(background);
+            Tile tile = new Tile(new Vector2f(100,520));//original tile            _ 
+            Tile tile1 = new Tile(new Vector2f(132, 536));//south tile +32x, + 16y  \
+            Tile tile2 = new Tile(new Vector2f (132,504));//east tile +32x, -16y     |_ compared to original tile
+            Tile tile3 = new Tile(new Vector2f(68, 504));//north tile -32x, -16y     |
+            Tile tile4 = new Tile(new Vector2f(68, 536));//west tile -32x, +16y    _/
+            AddGameObject(tile);
+            AddGameObject(tile1);
+            AddGameObject(tile2);
+            AddGameObject(tile3);
+            AddGameObject(tile4);
+            Hero hero = new Hero(new Vector2f(122, 488));//character location +22x, -32y compared to the tile stood on
+            AddGameObject(hero);
         }
         // Get the current score
         public int GetScore()

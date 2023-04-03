@@ -19,23 +19,63 @@ namespace MyGame
         private int _attacktimer;
         private int jumpduration = 0;
         private int _jumptimer;
-        private readonly Sprite _sprite = new Sprite();
-        public Hero()
+        private readonly Sprite _spritesouth = new Sprite();
+        private readonly Sprite _spritewest = new Sprite();
+        private readonly Sprite _spritenorth = new Sprite();
+        private readonly Sprite _spriteeast = new Sprite();
+
+        public Hero(Vector2f pos)
         {
-            _sprite.Texture = Game.GetTexture("../../../Resources/Hero.png");
-            _sprite.Position = new Vector2f(10,320);
+            _spritesouth.Texture = Game.GetTexture("../../../Resources/John South.png");
+            _spritesouth.Position = pos;
+            _spritewest.Texture = Game.GetTexture("../../../Resources/John West.png");
+            _spritewest.Position = pos;
+            _spritenorth.Texture = Game.GetTexture("../../../Resources/John North.png");
+            _spritenorth.Position = pos;
+            _spriteeast.Texture = Game.GetTexture("../../../Resources/John East.png");
+            _spriteeast.Position = pos;
+
         }
         public override void Draw()
         {
-            Game.RenderWindow.Draw(_sprite);
+            Game.RenderWindow.Draw(_spritesouth);
+
         }
         public override void Update(Time elapsed)
         {
-
-            
-            Vector2f pos = _sprite.Position;
+            Vector2f pos = _spritesouth.Position;
             float x = pos.X;
             float y = pos.Y;
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Up))
+            {//movement north 
+                x -= 32;
+                y +=16;
+                Tile_Spawner spawntiles = new Tile_Spawner();
+                spawntiles.SpawnThreetilesNorth(new Vector2f(x, y));
+            }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Left))
+            { //movement west
+                x -= 32;
+                y -=16;
+                Tile_Spawner spawntiles = new Tile_Spawner();
+                spawntiles.SpawnThreetilesWest(new Vector2f(x, y));
+            }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Down))
+            { //movement south
+                x += 32;
+                y +=16;
+                Tile_Spawner spawntiles = new Tile_Spawner();
+                spawntiles.SpawnThreetilesSouth(new Vector2f(x, y));
+            }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Right)) 
+            { //movement east
+                x += 32;
+                y -=16;
+                Tile_Spawner spawntiles = new Tile_Spawner();
+                spawntiles.SpawnThreetilesEast(new Vector2f(x, y));
+            }
+            _spritesouth.Position = new Vector2f(x, y);
+           /*
             if (0<jumpduration)
             {
                 y-=2f;
@@ -60,8 +100,8 @@ namespace MyGame
                 jumpduration -=1;
                 _jumptimer = 1000;
             }
-            _sprite.Position = new Vector2f(x, y);
-
+            _spritesouth.Position = new Vector2f(x, y);
+           */
             /*
             if (-_attacktimer >0) { _attacktimer -= msElapsed; }
 
