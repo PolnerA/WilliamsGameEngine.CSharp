@@ -56,24 +56,40 @@ namespace MyGame
             Tile south = new Tile(new Vector2f(pos.X+32, pos.Y+16));
             Tile east = new Tile(new Vector2f(pos.X+32, pos.Y-16));
             Tile west = new Tile(new Vector2f(pos.X-32, pos.Y-16));
+            Game.CurrentScene.AddGameObject(south);
+            Game.CurrentScene.AddGameObject(east);
+            Game.CurrentScene.AddGameObject(west);
+
         }
         public void SpawnThreetilesWest(Vector2f pos)
         {
             Tile south = new Tile(new Vector2f(pos.X+32, pos.Y+16));
             Tile east = new Tile(new Vector2f(pos.X+32, pos.Y-16));
             Tile north = new Tile(new Vector2f(pos.X-32, pos.Y+16));
+            Game.CurrentScene.AddGameObject(south);
+            Game.CurrentScene.AddGameObject(east);
+            Game.CurrentScene.AddGameObject(north);
+
         }
         public void SpawnThreetilesSouth(Vector2f pos)
         {
             Tile south = new Tile(new Vector2f(pos.X+32, pos.Y+16));
             Tile east = new Tile(new Vector2f(pos.X+32, pos.Y-16));
             Tile west = new Tile(new Vector2f(pos.X-32, pos.Y-16));
+            Game.CurrentScene.AddGameObject(south);
+            Game.CurrentScene.AddGameObject(east);
+            Game.CurrentScene.AddGameObject(west);
+
         }
         public void SpawnThreetilesEast(Vector2f pos)
         {
             Tile south = new Tile(new Vector2f(pos.X+32, pos.Y+16));
             Tile north = new Tile(new Vector2f(pos.X-32, pos.Y+16));
             Tile west = new Tile(new Vector2f(pos.X-32, pos.Y-16));
+            Game.CurrentScene.AddGameObject(south);
+            Game.CurrentScene.AddGameObject(north);
+            Game.CurrentScene.AddGameObject(west);
+
         }
         public override void Update(Time elapsed)
         {

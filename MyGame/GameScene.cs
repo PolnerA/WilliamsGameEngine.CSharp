@@ -20,8 +20,12 @@ namespace MyGame
             AddGameObject(tile2);
             AddGameObject(tile3);
             AddGameObject(tile4);
+            Tile_Spawner tiles = new Tile_Spawner();
+            AddGameObject(tiles);
             Hero hero = new Hero(new Vector2f(122, 488));//character location +22x, -32y compared to the tile stood on
             AddGameObject(hero);
+            
+            
         }
         // Get the current score
         public int GetScore()

@@ -19,62 +19,67 @@ namespace MyGame
         private int _attacktimer;
         private int jumpduration = 0;
         private int _jumptimer;
-        private readonly Sprite _spritesouth = new Sprite();
-        private readonly Sprite _spritewest = new Sprite();
-        private readonly Sprite _spritenorth = new Sprite();
-        private readonly Sprite _spriteeast = new Sprite();
+        private int _movetimer;
+        private const int movedelay = 100;
+        private readonly Sprite _sprite = new Sprite();
 
         public Hero(Vector2f pos)
         {
-            _spritesouth.Texture = Game.GetTexture("../../../Resources/John South.png");
-            _spritesouth.Position = pos;
-            _spritewest.Texture = Game.GetTexture("../../../Resources/John West.png");
-            _spritewest.Position = pos;
-            _spritenorth.Texture = Game.GetTexture("../../../Resources/John North.png");
-            _spritenorth.Position = pos;
-            _spriteeast.Texture = Game.GetTexture("../../../Resources/John East.png");
-            _spriteeast.Position = pos;
-
+            _sprite.Texture = Game.GetTexture("../../../Resources/John South.png");
+            _sprite.Position = pos;
         }
         public override void Draw()
         {
-            Game.RenderWindow.Draw(_spritesouth);
+            Game.RenderWindow.Draw(_sprite);
 
         }
         public override void Update(Time elapsed)
         {
-            Vector2f pos = _spritesouth.Position;
+            Vector2f pos = _sprite.Position;
             float x = pos.X;
             float y = pos.Y;
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Up))
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Up)&&movedelay<=_movetimer)
             {//movement north 
-                x -= 32;
-                y +=16;
-                Tile_Spawner spawntiles = new Tile_Spawner();
-                spawntiles.SpawnThreetilesNorth(new Vector2f(x, y));
-            }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Left))
-            { //movement west
                 x -= 32;
                 y -=16;
                 Tile_Spawner spawntiles = new Tile_Spawner();
-                spawntiles.SpawnThreetilesWest(new Vector2f(x, y));
+                spawntiles.SpawnThreetilesSouth(new Vector2f(x-22, y+32));
+                _movetimer=0;
+                _sprite.Texture = Game.GetTexture("../../../Resources/John North.png");
             }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Down))
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Left)&&movedelay<=_movetimer)
+            { //movement west
+                x -= 32;
+                y +=16;
+                Tile_Spawner spawntiles = new Tile_Spawner();
+                spawntiles.SpawnThreetilesEast(new Vector2f(x-22, y+32));
+                _movetimer =0;
+                _sprite.Texture = Game.GetTexture("../../../Resources/John West.png");
+
+            }
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Down)&&movedelay<=_movetimer)
             { //movement south
                 x += 32;
                 y +=16;
                 Tile_Spawner spawntiles = new Tile_Spawner();
-                spawntiles.SpawnThreetilesSouth(new Vector2f(x, y));
+                spawntiles.SpawnThreetilesNorth(new Vector2f(x-22, y+32));
+                _movetimer = 0;
+                _sprite.Texture = Game.GetTexture("../../../Resources/John South.png");
+
             }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Right)) 
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Right)&&movedelay<=_movetimer) 
             { //movement east
                 x += 32;
                 y -=16;
                 Tile_Spawner spawntiles = new Tile_Spawner();
-                spawntiles.SpawnThreetilesEast(new Vector2f(x, y));
+
+                spawntiles.SpawnThreetilesWest(new Vector2f(x-22, y+32));
+                _movetimer =0;
+                _sprite.Texture = Game.GetTexture("../../../Resources/John East.png");
+
             }
-            _spritesouth.Position = new Vector2f(x, y);
+            _sprite.Position = new Vector2f(x, y);
+            _movetimer++;
            /*
             if (0<jumpduration)
             {
