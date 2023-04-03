@@ -79,7 +79,6 @@ namespace MyGame
             Game.CurrentScene.AddGameObject(south);
             Game.CurrentScene.AddGameObject(east);
             Game.CurrentScene.AddGameObject(west);
-
         }
         public void SpawnThreetilesEast(Vector2f pos)
         {
