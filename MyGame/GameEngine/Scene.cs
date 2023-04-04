@@ -17,6 +17,10 @@ namespace GameEngine
             // This adds the game object onto the back (the end) of the list of game objects.
             _gameObjects.Add(gameObject);
         }
+        public void AddGameObject(int position,GameObject gameObject)
+        { 
+            _gameObjects.Insert(position, gameObject);
+        }
 
         // Called by the Game instance once per frame.
         public void Update(Time time)
