@@ -35,9 +35,16 @@ namespace MyGame
         }
         public override void Update(Time elapsed)
         {
+            bool up = false;
+            bool down = false;
+            bool left = false;
+            bool right = false;
             Vector2f pos = _sprite.Position;
             float x = pos.X;
             float y = pos.Y;
+            Vector2f middletilepos = new Vector2f(x-22, y+32);
+            float tilex = middletilepos.X;
+            float tiley = middletilepos.Y;
             if (Keyboard.IsKeyPressed(Keyboard.Key.Up)&&movedelay<=_movetimer)
             {//movement north 
                 x -= 32;
